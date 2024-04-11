@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./</loc>
-<lastmod>2024-04-11T08:34:33-00:00</lastmod>
+<lastmod>2024-04-11T08:40:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2024-04-11T08:34:33-00:00</lastmod>
+<lastmod>2024-04-11T08:40:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2024-04-11T08:34:33-00:00</lastmod>
+<lastmod>2024-04-11T08:40:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2024-04-11T08:34:33-00:00</lastmod>
+<lastmod>2024-04-11T08:40:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -39,15 +39,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>./pages/2024-Spring-w2-blog-tutorial/</loc>
-<lastmod>2024-04-11T08:34:02+08:00</lastmod>
+<loc>./pages/about/</loc>
+<lastmod>2024-03-14T08:46:31+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>./pages/about/</loc>
-<lastmod>2024-03-14T08:46:31+08:00</lastmod>
+<loc>./pages/2024-Spring-w2-blog-tutorial/</loc>
+<lastmod>2024-04-11T08:39:59+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
