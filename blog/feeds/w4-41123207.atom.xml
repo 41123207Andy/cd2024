@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>41123207協同產品設計 - w4 41123207</title><link href="./" rel="alternate"></link><link href="./feeds/w4-41123207.atom.xml" rel="self"></link><id>./</id><updated>2024-04-25T07:04:15+08:00</updated><entry><title>協同產品設計實習W4 41123207</title><link href="./2024-Spring-w4-blog-tutorial%2041123207.html" rel="alternate"></link><published>2024-03-17T11:01:00+08:00</published><updated>2024-04-25T07:04:15+08:00</updated><author><name>kmol</name></author><id>tag:None,2024-03-17:./2024-Spring-w4-blog-tutorial 41123207.html</id><summary type="html">&lt;p&gt;將組員的個人倉儲納入分組倉儲成為子模組/在 Replit 維護分組倉儲/善用 Github Codespaces 與 Gitpod&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;將組員的個人倉儲納入分組倉儲成為子模組/在 Replit 維護分組倉儲/善用 Github Codespaces 與 Gitpod&lt;/p&gt;
-
-
-&lt;h1&gt;上課內容摘要/相關資料收集&lt;/h1&gt;
-&lt;p&gt;說明如何將組員的個人倉儲納入分組倉儲成為子模組。說明如何在 Replit 維護分組倉儲。Gitpod 與 Codespaces 類似, 也是採用 Visual Studio Code 網際介面, 可讓使用者維護位於 Github 的倉儲，差別是一旦在 Gitpod 導入的分組網站 SSH 管理權限, 不會像 Replit 免費帳號下, 系統會定期刪除免費帳號使用者的 .ssh 目錄。&lt;/p&gt;
-&lt;h1&gt;分組報告執行分工及進度整理&lt;/h1&gt;
-&lt;p&gt;將組員的個人倉儲納入分組倉儲成為子模組/在 Replit 維護分組倉儲/善用 Github Codespaces 與 Gitpod&lt;/p&gt;</content><category term="w4 41123207"></category><category term="網誌編寫 41123207"></category></entry></feed>
