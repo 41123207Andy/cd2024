@@ -2,7 +2,7 @@
         <head>
         <title>cmsimde_site</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -142,151 +142,123 @@ img.add_border {
           </div>
 
         </header>
-    <div id="tipue_search_content">教學影片分組整理 << <a href='教學影片分組整理.html'>Previous</a> <br /><h1>教學影片分組整理逐字稿</h1>
-<p>從影片字幕中整理出逐字稿, 放在影片下方, 以 .txt 連結安排</p>
-<p><span>41123207 王騰甫分工:</span></p>
-<p><a href="https://mdecd2024.github.io/2b-midbg4/downloads/cd2024%202b%20w4%20%E5%88%A9%E7%94%A8%20Gitpod%20%E8%88%87%E5%80%8B%E4%BA%BA%20token%20%E5%8F%96%E5%BE%97%E5%88%86%E7%B5%84%E5%80%89%E5%84%B2%E6%94%B9%E7%89%88%E6%AC%8A%E9%99%90%2013.txt">cd2024 2b w4 利用 Gitpod 與個人 token 取得分組倉儲改版權限 13.txt</a></p>
-<p><a href="https://mdecd2024.github.io/2b-midbg4/downloads/cd2024%202b%20w5%20%E6%8C%87%E5%AE%9A%E5%BD%B1%E7%89%87%E5%8A%A0%E8%A8%BB%E4%BB%BB%E5%8B%99%20%E7%B5%B1%E6%95%B4%E7%B6%B2%E8%AA%8C%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE%20NX%20%E5%8F%AF%E6%94%9C%E8%88%87%20PC%20%E5%9F%B7%E8%A1%8C%E8%A6%8F%E5%8A%83%2014.txt">cd2024 2b w5 指定影片加註任務 統整網誌以及配置 NX 可攜與 PC 執行規劃 14.txt</a></p>
-<p></p>
-<p><br/><span></span></p>
-</div>
-<div style="width: 600px; height: 300px;"><br/><br/></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/><!-- ########################################## -->
-<p>從 1 累加到 100 part2:</p>
-<p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+    <div id="tipue_search_content">鋼球平衡台 PID 控制與詳細重點摘要 << <a href='鋼球平衡台 PID 控制與詳細重點摘要.html'>Previous</a> <a href='都靈理工大學.html'>Next</a> >> 都靈理工大學<br /><h1>與詳細重點摘要</h1>
+<p>1. **實驗前的準備工作**：<br/> - 透過從第一原理出發建立系統模型，包括考慮平衡球和梁的動力學。<br/> - 獲取系統的傳遞函數表示。<br/> - 設計期望的控制響應，確保滿足時間域規格，如百分比超調、峰值時間和穩定時間。</p>
+<p>2. **平衡球和梁級聯控制設計**：<br/> - 設計內環控制器：SRV02 PV位置控制器。<br/> - 設計外環控制器，確保平衡球在梁上的位置受控並滿足規格要求。<br/> - 考慮穩態誤差和積分器飽和問題。</p>
+<p>3. **實驗操作**：<br/> - 進行位置控制的模擬，包括PD和PID控制器的仿真。<br/> - 實施位置控制，設置Quarc相機塊參數。<br/> - 分析使用PD和PID控制的階躍響應、斜坡響應和正弦響應。</p>
+<p>4. **結論**：<br/> - 總結實驗結果，評估控制器性能。<br/> - 探討實驗中遇到的挑戰和解決方案。</p>
+<p>以上是詳細重點摘要，涵蓋了實驗前的準備、控制設計、實驗操作和結論部分的關鍵內容。如需進一步了解任何部分，請隨時提出更具體的問題。</p>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="./../cmsimde/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="./../cmsimde/static/ace/ace.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
+<script src="./../cmsimde/static/Cango-24v03-min.js"></script>
+<script src="./../cmsimde/static/gearUtils-09.js"></script>
+<script src="./../cmsimde/static/SVGpathUtils-6v03-min.js"></script>
+<script src="./../cmsimde/static/sylvester.js"></script>
+<script src="./../cmsimde/static/PrairieDraw.js"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
 <p>
 <script type="text/python3">
 from browser import document as doc
 import ace
 # 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
     bd.clear()
-Ace3 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
+Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
 # 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run2():
+def run1():
     # 利用 get 取下 src 變數值
     try:
-        url = doc.query["src2"]
+        url = doc.query["src"]
     except:
         url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c3a6deaf717f8f2739a4b1392a5ab10936e9693a/from_1_add_to_10_1.py"
     prog = open(url).read()
 
     # 將程式載入編輯區
-    Ace3.editor.setValue(prog)
-    Ace3.editor.scrollToRow(0)
-    Ace3.editor.gotoLine(0)
+    Ace1.editor.setValue(prog)
+    Ace1.editor.scrollToRow(0)
+    Ace1.editor.gotoLine(0)
     # 直接執行程式
     #ns = {'__name__':'__main__'}
     #exec(prog, ns)
     # 按下 run 按鈕
-    Ace3.run()
+    Ace1.run()
 
 # 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run2'].bind('click', Ace3.run)
-doc['kw_show_console2'].bind('click', Ace3.show_console)
-doc['kw_clear_console2'].bind('click', Ace3.clear_console)
-doc['clear_bd2'].bind('click', clear_bd2)
+doc['kw_run1'].bind('click', Ace1.run)
+doc['kw_show_console1'].bind('click', Ace1.show_console)
+doc['kw_clear_console1'].bind('click', Ace1.clear_console)
+doc['clear_bd1'].bind('click', clear_bd1)
 # 呼叫函式執行
-run2()
+run1()
 </script>
 </p>
-<p><!-- add 1 to 100 part2 開始 -->
+<p><!-- add 1 to 100 開始 -->
 <script type="text/python3">
 from browser import document as doc
 import ace
 
 # 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
     bd.clear()
 
 # 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace4 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
-
-# 透過 Ace4 以類別建立一個通用的 button2, 可以在多個案例中將 gist 程導入編輯區
-
-class button2:
-    def __init__(self, url):
-        self.url = url
-
-    # 記得加入 event 輸入變數
-    def do(self,ev):
-        Ace4.editor.setValue(open(self.url).read())
-        Ace4.editor.scrollToRow(0)
-        Ace4.editor.gotoLine(0)
-        Ace4.run()
+Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
 
 add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
 
 # 從 gist 取得程式碼
 add_src = open(add1to100_url).read()
-def add2(ev):
-    Ace4.editor.setValue(add_src)
-    Ace4.editor.scrollToRow(0)
-    Ace4.editor.gotoLine(0)
-    Ace4.run()
+def add(ev):
+    Ace2.editor.setValue(add_src)
+    Ace2.editor.scrollToRow(0)
+    Ace2.editor.gotoLine(0)
+    Ace2.run()
 
-# id 為 "add1to100part2" 的按鈕點按時, 執行 add 方法
-doc["add1to100part2"].bind('click', add2)
-# 以下為運用 button2 class 的通用 gist 程式導入區
-################################## cango_three_gears start
-cango_three_gears_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/cango_three_gears_brython_div2.py"
-cango_three_gears = button2(cango_three_gears_url)
-doc["cango_three_gears"].bind("click", cango_three_gears.do)
-################################## cango_three_gears end
-################################## bsnake start
-bsnake_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/kmol_snakey.py"
-bsnake = button2(bsnake_url)
-doc["bsnake"].bind("click", bsnake.do)
-################################## bsnake end
-################################## aitetris start
-aitetris_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/pygame_to_brython_tetris_ai.py"
-aitetris = button2(aitetris_url)
-doc["aitetris"].bind("click", aitetris.do)
-################################## aitetris end
-################################## threejsblock start
-threejsblock_url = "https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/df37802f9e8a386b6424f7945af622b1cd0a9ca5/threejs_rotating_block.py"
-threejsblock = button2(threejsblock_url)
-doc["threejsblock"].bind("click", threejsblock.do)
-################################## threejsblock end
+# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
+doc["add1to100"].bind('click', add)
 </script>
 </p>
-<p><!-- add 1 to 100 part2 結束--></p>
-<!-- editor2 開始 -->
+<p><!-- add 1 to 100 結束--></p>
+<!-- editor1 開始 -->
 <p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/>
-<p>
-<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p><br />教學影片分組整理 << <a href='教學影片分組整理.html'>Previous</a> </div>
+<div id="kw_editor1" style="width: 600px; height: 300px;">
+<br />鋼球平衡台 PID 控制與詳細重點摘要 << <a href='鋼球平衡台 PID 控制與詳細重點摘要.html'>Previous</a> <a href='都靈理工大學.html'>Next</a> >> 都靈理工大學</div>
 
     <!-- footer -->
       <div class="container">
