@@ -81,6 +81,7 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 <h1 class="post-title">鋼球平衡台 PID 控制與詳細重點摘要</h1>
 <p><span> </span><a href="http://229.cycu.org/cd2024_ball_balancing_platform_control_ref.7z">cd2024_ball_balancing_platform_control_ref.7z</a><span>,</span></p>
 <p><span> -cd2024_2D Ball Balancer Control using QUARC.pdf</span></p>
+<h2 class="post-title">與詳細重點摘要</h2>
 <p>1. **實驗前的準備工作**：<br/> - 透過從第一原理出發建立系統模型，包括考慮平衡球和梁的動力學。<br/> - 獲取系統的傳遞函數表示。<br/> - 設計期望的控制響應，確保滿足時間域規格，如百分比超調、峰值時間和穩定時間。</p>
 <p>2. **平衡球和梁級聯控制設計**：<br/> - 設計內環控制器：SRV02 PV位置控制器。<br/> - 設計外環控制器，確保平衡球在梁上的位置受控並滿足規格要求。<br/> - 考慮穩態誤差和積分器飽和問題。</p>
 <p>3. **實驗操作**：<br/> - 進行位置控制的模擬，包括PD和PID控制器的仿真。<br/> - 實施位置控制，設置Quarc相機塊參數。<br/> - 分析使用PD和PID控制的階躍響應、斜坡響應和正弦響應。</p>
