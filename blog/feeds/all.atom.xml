@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>41123207協同產品設計</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2024-04-25T11:00:00+08:00</updated><entry><title>協同產品設計實習W10</title><link href="./2024-Spring-w10-blog-tutorial.html" rel="alternate"></link><published>2024-04-25T11:00:00+08:00</published><updated>2024-04-25T07:43:08+08:00</updated><author><name>kmol</name></author><id>tag:None,2024-04-25:./2024-Spring-w10-blog-tutorial.html</id><summary type="html">&lt;p&gt;在各組員與分組網站中, 列出各學員的 cd2024 倉儲、網站, 以及各班各組的期中報告倉儲與網站連結./鋼球平衡台 PID 控制與模擬摘要內容&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>41123207協同產品設計</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2024-05-09T11:00:00+08:00</updated><entry><title>協同產品設計實習W12</title><link href="./2024-Spring-w12-blog-tutorial.html" rel="alternate"></link><published>2024-05-09T11:00:00+08:00</published><updated>2024-05-09T07:39:57+08:00</updated><author><name>kmol</name></author><id>tag:None,2024-05-09:./2024-Spring-w12-blog-tutorial.html</id><summary type="html">&lt;p&gt;本周有三個作業-1.利用 NX 1872 繪製鋼球平衡台所需的零組件2.將各分組倉儲設為評分倉儲的子模組3.跨網路操控模擬場景裝置.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;本周有三個作業-1.利用 NX 1872 繪製鋼球平衡台所需的零組件2.將各分組倉儲設為評分倉儲的子模組3.跨網路操控模擬場景裝置.&lt;/p&gt;
+
+
+&lt;h1&gt;上課內容摘要/相關資料收集&lt;/h1&gt;
+&lt;p&gt;本周有三個作業1.利用 NX 1872 繪製鋼球平衡台所需的零組件2.將各分組倉儲設為評分倉儲的子模組3.跨網路操控模擬場景裝置.&lt;/p&gt;
+&lt;h1&gt;w12 實習任務一的執行心得&lt;/h1&gt;
+&lt;p&gt;成功完成鋼球平衡台零組件的繪製及繳交至少一份零件繪製的 NXOpen Python 程式，學習到了如果利用nx的錄製功能利用python紀錄了鋼球平衡台零組件。&lt;/p&gt;</content><category term="w12"></category><category term="網誌編寫"></category></entry><entry><title>協同產品設計實習W11</title><link href="./2024-Spring-w11-blog-tutorial.html" rel="alternate"></link><published>2024-05-02T11:00:00+08:00</published><updated>2024-05-02T07:53:43+08:00</updated><author><name>kmol</name></author><id>tag:None,2024-05-02:./2024-Spring-w11-blog-tutorial.html</id><summary type="html">&lt;p&gt;利用 NX 1872 繪製鋼球平衡台所需的零組件.了解如何協同整理資料、編寫網誌、建立網際簡報及結案報告。取得對倉儲的管理權限，學習利用分支完成多人推送時的困難點。&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;利用 NX 1872 繪製鋼球平衡台所需的零組件.了解如何協同整理資料、編寫網誌、建立網際簡報及結案報告。取得對倉儲的管理權限，學習利用分支完成多人推送時的困難點。&lt;/p&gt;
+
+
+&lt;h1&gt;上課內容摘要/相關資料收集&lt;/h1&gt;
+&lt;p&gt;利用 NX 1872 繪製鋼球平衡台所需的零組件.了解如何協同整理資料、編寫網誌、建立網際簡報及結案報告。取得對倉儲的管理權限，學習利用分支完成多人推送時的困難點。&lt;/p&gt;
+&lt;h1&gt;分組報告執行分工及進度整理&lt;/h1&gt;
+&lt;p&gt;正在學習nx的資料。學會利用分支完成多人推送時的困難點。&lt;/p&gt;</content><category term="w11"></category><category term="網誌編寫"></category></entry><entry><title>協同產品設計實習W10</title><link href="./2024-Spring-w10-blog-tutorial.html" rel="alternate"></link><published>2024-04-25T11:00:00+08:00</published><updated>2024-04-25T07:43:08+08:00</updated><author><name>kmol</name></author><id>tag:None,2024-04-25:./2024-Spring-w10-blog-tutorial.html</id><summary type="html">&lt;p&gt;在各組員與分組網站中, 列出各學員的 cd2024 倉儲、網站, 以及各班各組的期中報告倉儲與網站連結./鋼球平衡台 PID 控制與模擬摘要內容&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;在各組員與分組網站中, 列出各學員的 cd2024 倉儲、網站, 以及各班各組的期中報告倉儲與網站連結./鋼球平衡台 PID 控制與模擬摘要內容&lt;/p&gt;
 
 
