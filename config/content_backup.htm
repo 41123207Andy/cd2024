@@ -81,6 +81,672 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 <h1 class="post-title">NX</h1>
 <h2 class="post-title"><span>w12 實習任務一</span></h2>
 <p><span><a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/41123207_nfu_edu_tw/EaqER0wiJZdJoFOs6H4EKyUBKjDLzc3HeKGSG3ZOFcrTCg?e=WDxyiT">journal.vb</a></span></p>
+<div>
+<div><span>' NX 1872</span></div>
+<div><span>' Journal created by Admin on Thu May 9 15:20:28 2024 台北標準時間</span></div>
+<br/>
+<div><span>'</span></div>
+<div><span>Imports</span><span> System</span></div>
+<div><span>Imports</span><span> NXOpen</span></div>
+<br/>
+<div><span>Module</span><span> NXJournal</span></div>
+<div><span>Sub</span><span> Main (</span><span>ByVal</span><span> args() </span><span>As</span><span> </span><span>String</span><span>) </span></div>
+<br/>
+<div><span>Dim</span><span> theSession </span><span>As</span><span> NXOpen.Session = NXOpen.Session.GetSession()</span></div>
+<div><span>Dim</span><span> workPart </span><span>As</span><span> NXOpen.Part = theSession.Parts.Work</span></div>
+<br/>
+<div><span>Dim</span><span> displayPart </span><span>As</span><span> NXOpen.Part = theSession.Parts.Display</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：插入(S)-&gt;基準/點(D)-&gt;基準平面(D)...</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>Dim</span><span> markId1 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId1 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Visible, </span><span>"起點"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> nullNXOpen_Features_Feature </span><span>As</span><span> NXOpen.Features.Feature = </span><span>Nothing</span></div>
+<br/>
+<div><span>Dim</span><span> datumPlaneBuilder1 </span><span>As</span><span> NXOpen.Features.DatumPlaneBuilder = </span><span>Nothing</span></div>
+<div><span>datumPlaneBuilder1 = workPart.Features.CreateDatumPlaneBuilder(nullNXOpen_Features_Feature)</span></div>
+<br/>
+<div><span>Dim</span><span> plane1 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane1 = datumPlaneBuilder1.GetPlane()</span></div>
+<br/>
+<div><span>Dim</span><span> unit1 </span><span>As</span><span> NXOpen.Unit = </span><span>CType</span><span>(workPart.UnitCollection.FindObject(</span><span>"MilliMeter"</span><span>), NXOpen.Unit)</span></div>
+<br/>
+<div><span>Dim</span><span> expression1 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression1 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression2 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression2 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> coordinates1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> point1 </span><span>As</span><span> NXOpen.Point = </span><span>Nothing</span></div>
+<div><span>point1 = workPart.Points.CreatePoint(coordinates1)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId1, </span><span>"基準平面 對話方塊"</span><span>)</span></div>
+<br/>
+<div><span>plane1.SetUpdateOption(NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：插入(S)-&gt;基準/點(D)-&gt;基準座標系(C)...</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>datumPlaneBuilder1.Destroy()</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression2)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression1)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>theSession.UndoToMark(markId1, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId1, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId2 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId2 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Visible, </span><span>"起點"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> datumCsysBuilder1 </span><span>As</span><span> NXOpen.Features.DatumCsysBuilder = </span><span>Nothing</span></div>
+<div><span>datumCsysBuilder1 = workPart.Features.CreateDatumCsysBuilder(nullNXOpen_Features_Feature)</span></div>
+<br/>
+<div><span>Dim</span><span> origin1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> normal1 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>1.0</span><span>)</span></div>
+<div><span>Dim</span><span> plane2 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane2 = workPart.Planes.CreatePlane(origin1, normal1, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>Dim</span><span> expression3 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression3 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression4 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression4 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> origin2 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> normal2 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>1.0</span><span>)</span></div>
+<div><span>Dim</span><span> plane3 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane3 = workPart.Planes.CreatePlane(origin2, normal2, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>Dim</span><span> expression5 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression5 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression6 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression6 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> origin3 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> normal3 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>1.0</span><span>)</span></div>
+<div><span>Dim</span><span> plane4 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane4 = workPart.Planes.CreatePlane(origin3, normal3, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>Dim</span><span> expression7 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression7 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression8 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression8 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> origin4 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> normal4 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>1.0</span><span>)</span></div>
+<div><span>Dim</span><span> plane5 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane5 = workPart.Planes.CreatePlane(origin4, normal4, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>Dim</span><span> expression9 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression9 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression10 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression10 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> unit2 </span><span>As</span><span> NXOpen.Unit = </span><span>CType</span><span>(workPart.UnitCollection.FindObject(</span><span>"Degrees"</span><span>), NXOpen.Unit)</span></div>
+<br/>
+<div><span>Dim</span><span> expression11 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression11 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>Dim</span><span> expression12 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression12 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>Dim</span><span> expression13 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression13 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>Dim</span><span> expression14 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression14 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression15 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression15 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>Dim</span><span> expression16 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression16 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression17 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression17 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>Dim</span><span> expression18 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression18 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression19 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression19 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit2)</span></div>
+<br/>
+<div><span>expression14.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>expression16.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>expression18.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>expression15.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>expression17.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>expression19.RightHandSide = </span><span>"0"</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId2, </span><span>"基準座標系 對話方塊"</span><span>)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：插入(S)-&gt;草圖(H)...</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>Dim</span><span> markId3 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId3 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"基準座標系"</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId3, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId4 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId4 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"基準座標系"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> origin5 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> xDirection1 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>1.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> yDirection1 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>1.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> xform1 </span><span>As</span><span> NXOpen.Xform = </span><span>Nothing</span></div>
+<div><span>xform1 = workPart.Xforms.CreateXform(origin5, xDirection1, yDirection1, NXOpen.SmartObject.UpdateOption.WithinModeling, </span><span>1.0</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> cartesianCoordinateSystem1 </span><span>As</span><span> NXOpen.CartesianCoordinateSystem = </span><span>Nothing</span></div>
+<div><span>cartesianCoordinateSystem1 = workPart.CoordinateSystems.CreateCoordinateSystem(xform1, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId4, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId2, </span><span>"基準座標系"</span><span>)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression14)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression16)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression18)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression15)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression17)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression19)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression11)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression12)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression13)</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression4)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression6)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression8)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression10)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression3)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>plane2.DestroyPlane()</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression5)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>plane3.DestroyPlane()</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression7)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>plane4.DestroyPlane()</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression9)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>plane5.DestroyPlane()</span></div>
+<br/>
+<div><span>datumCsysBuilder1.Csys = cartesianCoordinateSystem1</span></div>
+<br/>
+<div><span>datumCsysBuilder1.DisplayScaleFactor = </span><span>1.25</span></div>
+<br/>
+<div><span>Dim</span><span> nXObject1 </span><span>As</span><span> NXOpen.NXObject = </span><span>Nothing</span></div>
+<div><span>nXObject1 = datumCsysBuilder1.Commit()</span></div>
+<br/>
+<div><span>datumCsysBuilder1.Destroy()</span></div>
+<br/>
+<div><span>Dim</span><span> markId5 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId5 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Visible, </span><span>"起點"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> nullNXOpen_Sketch </span><span>As</span><span> NXOpen.Sketch = </span><span>Nothing</span></div>
+<br/>
+<div><span>Dim</span><span> sketchInPlaceBuilder1 </span><span>As</span><span> NXOpen.SketchInPlaceBuilder = </span><span>Nothing</span></div>
+<div><span>sketchInPlaceBuilder1 = workPart.Sketches.CreateSketchInPlaceBuilder2(nullNXOpen_Sketch)</span></div>
+<br/>
+<div><span>Dim</span><span> origin6 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> normal5 </span><span>As</span><span> NXOpen.Vector3d = </span><span>New</span><span> NXOpen.Vector3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>1.0</span><span>)</span></div>
+<div><span>Dim</span><span> plane6 </span><span>As</span><span> NXOpen.Plane = </span><span>Nothing</span></div>
+<div><span>plane6 = workPart.Planes.CreatePlane(origin6, normal5, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>sketchInPlaceBuilder1.PlaneReference = plane6</span></div>
+<br/>
+<div><span>Dim</span><span> expression20 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression20 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> expression21 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression21 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>Dim</span><span> sketchAlongPathBuilder1 </span><span>As</span><span> NXOpen.SketchAlongPathBuilder = </span><span>Nothing</span></div>
+<div><span>sketchAlongPathBuilder1 = workPart.Sketches.CreateSketchAlongPathBuilder(nullNXOpen_Sketch)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId5, </span><span>"建立草圖 對話方塊"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId6 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId6 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"建立草圖"</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId6, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId7 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId7 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"建立草圖"</span><span>)</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.CreateInferredConstraints = </span><span>True</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.ContinuousAutoDimensioning = </span><span>True</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.DimensionLabel = NXOpen.Preferences.SketchPreferences.DimensionLabelType.Expression</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.TextSizeFixed = </span><span>True</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.FixedTextSize = </span><span>3.0</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.DisplayParenthesesOnReferenceDimensions = </span><span>True</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.DisplayReferenceGeometry = </span><span>False</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.ConstraintSymbolSize = </span><span>3.0</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.DisplayObjectColor = </span><span>False</span></div>
+<br/>
+<div><span>theSession.Preferences.Sketch.DisplayObjectName = </span><span>True</span></div>
+<br/>
+<div><span>Dim</span><span> nXObject2 </span><span>As</span><span> NXOpen.NXObject = </span><span>Nothing</span></div>
+<div><span>nXObject2 = sketchInPlaceBuilder1.Commit()</span></div>
+<br/>
+<div><span>Dim</span><span> sketch1 </span><span>As</span><span> NXOpen.Sketch = </span><span>CType</span><span>(nXObject2, NXOpen.Sketch)</span></div>
+<br/>
+<div><span>Dim</span><span> feature1 </span><span>As</span><span> NXOpen.Features.Feature = </span><span>Nothing</span></div>
+<div><span>feature1 = sketch1.Feature</span></div>
+<br/>
+<div><span>Dim</span><span> markId8 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId8 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"update"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> nErrs1 </span><span>As</span><span> </span><span>Integer</span><span> = </span><span>Nothing</span></div>
+<div><span>nErrs1 = theSession.UpdateManager.DoUpdate(markId8)</span></div>
+<br/>
+<div><span>sketch1.Activate(NXOpen.Sketch.ViewReorient.</span><span>True</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId7, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId5, </span><span>"建立草圖"</span><span>)</span></div>
+<br/>
+<div><span>sketchInPlaceBuilder1.Destroy()</span></div>
+<br/>
+<div><span>sketchAlongPathBuilder1.Destroy()</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression21)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>Try</span></div>
+<div><span> </span><span>' 運算式仍然在使用中。</span></div>
+<div><span> workPart.Expressions.Delete(expression20)</span></div>
+<div><span>Catch</span><span> ex </span><span>As</span><span> NXException</span></div>
+<div><span> ex.AssertErrorCode(</span><span>1050029</span><span>)</span></div>
+<div><span>End Try</span></div>
+<br/>
+<div><span>plane6.DestroyPlane()</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.32929284143071819</span><span>, -</span><span>0.40832312337407828</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.3292928414306901</span><span>, </span><span>0.4083231233740659</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>1.25</span><span>, scaleAboutPoint1, viewCenter1)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint2 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.1159110801836211</span><span>, -</span><span>0.29504638592191679</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter2 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.11591108018359235</span><span>, </span><span>0.29504638592190419</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>1.25</span><span>, scaleAboutPoint2, viewCenter2)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint3 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.059009277184396122</span><span>, -</span><span>0.23603710873753417</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter3 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.059009277184367367</span><span>, </span><span>0.23603710873752196</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>1.25</span><span>, scaleAboutPoint3, viewCenter3)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint4 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.047207421747519185</span><span>, -</span><span>0.18882968699002903</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter4 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.047207421747490437</span><span>, </span><span>0.18882968699001637</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>0.80000000000000004</span><span>, scaleAboutPoint4, viewCenter4)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint5 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.059009277184396101</span><span>, -</span><span>0.23603710873753411</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter5 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.059009277184367354</span><span>, </span><span>0.23603710873752259</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>0.80000000000000004</span><span>, scaleAboutPoint5, viewCenter5)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint6 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.073761596480491534</span><span>, -</span><span>0.29504638592191579</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter6 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.073761596480462779</span><span>, </span><span>0.29504638592190413</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>0.80000000000000004</span><span>, scaleAboutPoint6, viewCenter6)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint7 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.092201995600609918</span><span>, -</span><span>0.3688079824023936</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter7 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.092201995600580719</span><span>, </span><span>0.36880798240238238</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>0.80000000000000004</span><span>, scaleAboutPoint7, viewCenter7)</span></div>
+<br/>
+<div><span>Dim</span><span> scaleAboutPoint8 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.18111106278689948</span><span>, -</span><span>0.32929284143070936</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> viewCenter8 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>0.18111106278687139</span><span>, </span><span>0.32929284143069809</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.ZoomAboutPoint(</span><span>1.25</span><span>, scaleAboutPoint8, viewCenter8)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：插入(S)-&gt;草圖曲線(S)-&gt;圓(C)...</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>Dim</span><span> markId9 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId9 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"Profile short list"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId10 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId10 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"Curve"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> expression22 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression22 = workPart.Expressions.CreateSystemExpression(</span><span>"2.8"</span><span>)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkVisibility(markId10, </span><span>"Curve"</span><span>, NXOpen.Session.MarkVisibility.Visible)</span></div>
+<br/>
+<div><span>Dim</span><span> nXMatrix1 </span><span>As</span><span> NXOpen.NXMatrix = </span><span>Nothing</span></div>
+<div><span>nXMatrix1 = theSession.ActiveSketch.Orientation</span></div>
+<br/>
+<div><span>Dim</span><span> center1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.0</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> arc1 </span><span>As</span><span> NXOpen.Arc = </span><span>Nothing</span></div>
+<div><span>arc1 = workPart.Curves.CreateArc(center1, nXMatrix1, </span><span>1.3999999999999999</span><span>, </span><span>0.0</span><span>, ( </span><span>360.0</span><span> * Math.Pi/</span><span>180.0</span><span> ))</span></div>
+<br/>
+<div><span>theSession.ActiveSketch.AddGeometry(arc1, NXOpen.Sketch.InferConstraintsOption.InferNoConstraints)</span></div>
+<br/>
+<div><span>Dim</span><span> geom1_1 </span><span>As</span><span> NXOpen.Sketch.ConstraintGeometry = </span><span>Nothing</span></div>
+<div><span>geom1_1.Geometry = arc1</span></div>
+<div><span>geom1_1.PointType = NXOpen.Sketch.ConstraintPointType.ArcCenter</span></div>
+<div><span>geom1_1.SplineDefiningPointIndex = </span><span>0</span></div>
+<div><span>Dim</span><span> geom2_1 </span><span>As</span><span> NXOpen.Sketch.ConstraintGeometry = </span><span>Nothing</span></div>
+<div><span>Dim</span><span> datumCsys1 </span><span>As</span><span> NXOpen.Features.DatumCsys = </span><span>CType</span><span>(workPart.Features.FindObject(</span><span>"SKETCH(1:1B)"</span><span>), NXOpen.Features.DatumCsys)</span></div>
+<br/>
+<div><span>Dim</span><span> point2 </span><span>As</span><span> NXOpen.Point = </span><span>CType</span><span>(datumCsys1.FindObject(</span><span>"POINT 1"</span><span>), NXOpen.Point)</span></div>
+<br/>
+<div><span>geom2_1.Geometry = point2</span></div>
+<div><span>geom2_1.PointType = NXOpen.Sketch.ConstraintPointType.None</span></div>
+<div><span>geom2_1.SplineDefiningPointIndex = </span><span>0</span></div>
+<div><span>Dim</span><span> sketchGeometricConstraint1 </span><span>As</span><span> NXOpen.SketchGeometricConstraint = </span><span>Nothing</span></div>
+<div><span>sketchGeometricConstraint1 = theSession.ActiveSketch.CreateCoincidentConstraint(geom1_1, geom2_1)</span></div>
+<br/>
+<div><span>Dim</span><span> dimObject1_1 </span><span>As</span><span> NXOpen.Sketch.DimensionGeometry = </span><span>Nothing</span></div>
+<div><span>dimObject1_1.Geometry = arc1</span></div>
+<div><span>dimObject1_1.AssocType = NXOpen.Sketch.AssocType.None</span></div>
+<div><span>dimObject1_1.AssocValue = </span><span>0</span></div>
+<div><span>dimObject1_1.HelpPoint.X = </span><span>0.0</span></div>
+<div><span>dimObject1_1.HelpPoint.Y = </span><span>0.0</span></div>
+<div><span>dimObject1_1.HelpPoint.Z = </span><span>0.0</span></div>
+<div><span>Dim</span><span> nullNXOpen_NXObject </span><span>As</span><span> NXOpen.NXObject = </span><span>Nothing</span></div>
+<br/>
+<div><span>dimObject1_1.View = nullNXOpen_NXObject</span></div>
+<div><span>Dim</span><span> dimOrigin1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(</span><span>0.0</span><span>, </span><span>0.14934856430242965</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>Dim</span><span> sketchDimensionalConstraint1 </span><span>As</span><span> NXOpen.SketchDimensionalConstraint = </span><span>Nothing</span></div>
+<div><span>sketchDimensionalConstraint1 = theSession.ActiveSketch.CreateDiameterDimension(dimObject1_1, dimOrigin1, expression22, NXOpen.Sketch.DimensionOption.CreateAsDriving)</span></div>
+<br/>
+<div><span>Dim</span><span> dimension1 </span><span>As</span><span> NXOpen.Annotations.Dimension = </span><span>Nothing</span></div>
+<div><span>dimension1 = sketchDimensionalConstraint1.AssociatedDimension</span></div>
+<br/>
+<div><span>theSession.ActiveSketch.Update()</span></div>
+<br/>
+<div><span>Dim</span><span> markId11 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId11 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"Curve"</span><span>)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：渲染樣式(D)-&gt;藝術外觀(T)</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>Dim</span><span> nullNXOpen_Display_TrueStudio </span><span>As</span><span> NXOpen.Display.TrueStudio = </span><span>Nothing</span></div>
+<br/>
+<div><span>Dim</span><span> trueStudioBuilder1 </span><span>As</span><span> NXOpen.Display.TrueStudioBuilder = </span><span>Nothing</span></div>
+<div><span>trueStudioBuilder1 = workPart.TrueStudioObjs.CreateTrueStudioBuilder(nullNXOpen_Display_TrueStudio)</span></div>
+<br/>
+<div><span>trueStudioBuilder1.ModeToggle = </span><span>True</span></div>
+<br/>
+<div><span>workPart.ModelingViews.WorkView.RenderingStyle = NXOpen.View.RenderingStyleType.Studio</span></div>
+<br/>
+<div><span>Dim</span><span> nXObject3 </span><span>As</span><span> NXOpen.NXObject = </span><span>Nothing</span></div>
+<div><span>nXObject3 = trueStudioBuilder1.Commit()</span></div>
+<br/>
+<div><span>trueStudioBuilder1.Destroy()</span></div>
+<br/>
+<div><span>workPart.ModelingViews.WorkView.RenderingStyle = NXOpen.View.RenderingStyleType.Studio</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：檔案(F)-&gt;完成草圖(K)</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>theSession.DeleteUndoMark(markId11, </span><span>"Curve"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> sketch2 </span><span>As</span><span> NXOpen.Sketch = </span><span>Nothing</span></div>
+<div><span>sketch2 = theSession.ActiveSketch</span></div>
+<br/>
+<div><span>Dim</span><span> markId12 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId12 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"Deactivate Sketch"</span><span>)</span></div>
+<br/>
+<div><span>theSession.ActiveSketch.Deactivate(NXOpen.Sketch.ViewReorient.</span><span>True</span><span>, NXOpen.Sketch.UpdateLevel.Model)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：插入(S)-&gt;設計特徵(E)-&gt;拉伸(X)...</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>Dim</span><span> markId13 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId13 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Visible, </span><span>"起點"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> extrudeBuilder1 </span><span>As</span><span> NXOpen.Features.ExtrudeBuilder = </span><span>Nothing</span></div>
+<div><span>extrudeBuilder1 = workPart.Features.CreateExtrudeBuilder(nullNXOpen_Features_Feature)</span></div>
+<br/>
+<div><span>Dim</span><span> section1 </span><span>As</span><span> NXOpen.Section = </span><span>Nothing</span></div>
+<div><span>section1 = workPart.Sections.CreateSection(</span><span>0.0094999999999999998</span><span>, </span><span>0.01</span><span>, </span><span>0.5</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Section = section1</span></div>
+<br/>
+<div><span>extrudeBuilder1.AllowSelfIntersectingSection(</span><span>True</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> expression23 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression23 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"2.00"</span><span>, unit2)</span></div>
+<br/>
+<div><span>extrudeBuilder1.DistanceTolerance = </span><span>0.01</span></div>
+<br/>
+<div><span>extrudeBuilder1.BooleanOperation.Type = NXOpen.GeometricUtilities.BooleanOperation.BooleanType.Create</span></div>
+<br/>
+<div><span>Dim</span><span> targetBodies1(</span><span>0</span><span>) </span><span>As</span><span> NXOpen.Body</span></div>
+<div><span>Dim</span><span> nullNXOpen_Body </span><span>As</span><span> NXOpen.Body = </span><span>Nothing</span></div>
+<br/>
+<div><span>targetBodies1(</span><span>0</span><span>) = nullNXOpen_Body</span></div>
+<div><span>extrudeBuilder1.BooleanOperation.SetTargetBodies(targetBodies1)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Limits.StartExtend.Value.SetFormula(</span><span>"0"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Limits.EndExtend.Value.SetFormula(</span><span>"25"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Offset.StartOffset.SetFormula(</span><span>"0"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Offset.EndOffset.SetFormula(</span><span>"5"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> smartVolumeProfileBuilder1 </span><span>As</span><span> NXOpen.GeometricUtilities.SmartVolumeProfileBuilder = </span><span>Nothing</span></div>
+<div><span>smartVolumeProfileBuilder1 = extrudeBuilder1.SmartVolumeProfile</span></div>
+<br/>
+<div><span>smartVolumeProfileBuilder1.OpenProfileSmartVolumeOption = </span><span>False</span></div>
+<br/>
+<div><span>smartVolumeProfileBuilder1.CloseProfileRule = NXOpen.GeometricUtilities.SmartVolumeProfileBuilder.CloseProfileRuleType.Fci</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId13, </span><span>"拉伸 對話方塊"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Limits.StartExtend.Value.SetFormula(</span><span>"0"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Limits.EndExtend.Value.SetFormula(</span><span>"25"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Draft.FrontDraftAngle.SetFormula(</span><span>"2"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Draft.BackDraftAngle.SetFormula(</span><span>"2"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Offset.StartOffset.SetFormula(</span><span>"0"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Offset.EndOffset.SetFormula(</span><span>"5"</span><span>)</span></div>
+<br/>
+<div><span>section1.DistanceTolerance = </span><span>0.01</span></div>
+<br/>
+<div><span>section1.ChainingTolerance = </span><span>0.0094999999999999998</span></div>
+<br/>
+<div><span>section1.SetAllowedEntityTypes(NXOpen.Section.AllowTypes.OnlyCurves)</span></div>
+<br/>
+<div><span>Dim</span><span> markId14 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId14 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"section mark"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId15 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId15 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> features1(</span><span>0</span><span>) </span><span>As</span><span> NXOpen.Features.Feature</span></div>
+<div><span>Dim</span><span> sketchFeature1 </span><span>As</span><span> NXOpen.Features.SketchFeature = </span><span>CType</span><span>(feature1, NXOpen.Features.SketchFeature)</span></div>
+<br/>
+<div><span>features1(</span><span>0</span><span>) = sketchFeature1</span></div>
+<div><span>Dim</span><span> curveFeatureRule1 </span><span>As</span><span> NXOpen.CurveFeatureRule = </span><span>Nothing</span></div>
+<div><span>curveFeatureRule1 = workPart.ScRuleFactory.CreateRuleCurveFeature(features1)</span></div>
+<br/>
+<div><span>section1.AllowSelfIntersection(</span><span>True</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> rules1(</span><span>0</span><span>) </span><span>As</span><span> NXOpen.SelectionIntentRule</span></div>
+<div><span>rules1(</span><span>0</span><span>) = curveFeatureRule1</span></div>
+<div><span>Dim</span><span> helpPoint1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>1.3642199176742373</span><span>, -</span><span>0.31143699864209995</span><span>, </span><span>0.0</span><span>)</span></div>
+<div><span>section1.AddToSection(rules1, arc1, nullNXOpen_NXObject, nullNXOpen_NXObject, helpPoint1, NXOpen.Section.Mode.Create, </span><span>False</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId15, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> direction1 </span><span>As</span><span> NXOpen.Direction = </span><span>Nothing</span></div>
+<div><span>direction1 = workPart.Directions.CreateDirection(sketch2, NXOpen.Sense.Forward, NXOpen.SmartObject.UpdateOption.WithinModeling)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Direction = direction1</span></div>
+<br/>
+<div><span>Dim</span><span> expression24 </span><span>As</span><span> NXOpen.Expression = </span><span>Nothing</span></div>
+<div><span>expression24 = workPart.Expressions.CreateSystemExpressionWithUnits(</span><span>"0"</span><span>, unit1)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId14, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.Limits.EndExtend.Value.SetFormula(</span><span>"6"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> rotMatrix1 </span><span>As</span><span> NXOpen.Matrix3x3 = </span><span>Nothing</span></div>
+<div><span>rotMatrix1.Xx = </span><span>0.34117009820603067</span></div>
+<div><span>rotMatrix1.Xy = </span><span>0.93771583394525115</span></div>
+<div><span>rotMatrix1.Xz = </span><span>0.065513196063442206</span></div>
+<div><span>rotMatrix1.Yx = -</span><span>0.65255317952837755</span></div>
+<div><span>rotMatrix1.Yy = </span><span>0.18610108969583089</span></div>
+<div><span>rotMatrix1.Yz = </span><span>0.734534364275374</span></div>
+<div><span>rotMatrix1.Zx = </span><span>0.67659242678106424</span></div>
+<div><span>rotMatrix1.Zy = -</span><span>0.29335200558779939</span></div>
+<div><span>rotMatrix1.Zz = </span><span>0.67540157598285466</span></div>
+<div><span>Dim</span><span> translation1 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>3.3086805620987789</span><span>, </span><span>0.62693714873927764</span><span>, -</span><span>3.7567940257052665</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.SetRotationTranslationScale(rotMatrix1, translation1, </span><span>20.087236954786007</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> rotMatrix2 </span><span>As</span><span> NXOpen.Matrix3x3 = </span><span>Nothing</span></div>
+<div><span>rotMatrix2.Xx = </span><span>0.35230914384389794</span></div>
+<div><span>rotMatrix2.Xy = </span><span>0.9320219125607806</span></div>
+<div><span>rotMatrix2.Xz = </span><span>0.084931864871331197</span></div>
+<div><span>rotMatrix2.Yx = -</span><span>0.80449854395745402</span></div>
+<div><span>rotMatrix2.Yy = </span><span>0.25523172209609529</span></div>
+<div><span>rotMatrix2.Yz = </span><span>0.53631973747587947</span></div>
+<div><span>rotMatrix2.Zx = </span><span>0.47818444133442228</span></div>
+<div><span>rotMatrix2.Zy = -</span><span>0.25727790916128879</span></div>
+<div><span>rotMatrix2.Zz = </span><span>0.83973074108506962</span></div>
+<div><span>Dim</span><span> translation2 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>3.3228413872155782</span><span>, </span><span>0.68621575734774831</span><span>, -</span><span>4.5291485362901351</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.SetRotationTranslationScale(rotMatrix2, translation2, </span><span>20.087236954786007</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId16 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId16 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"拉伸"</span><span>)</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId16, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> markId17 </span><span>As</span><span> NXOpen.Session.UndoMarkId = </span><span>Nothing</span></div>
+<div><span>markId17 = theSession.SetUndoMark(NXOpen.Session.MarkVisibility.Invisible, </span><span>"拉伸"</span><span>)</span></div>
+<br/>
+<div><span>extrudeBuilder1.ParentFeatureInternal = </span><span>False</span></div>
+<br/>
+<div><span>Dim</span><span> feature2 </span><span>As</span><span> NXOpen.Features.Feature = </span><span>Nothing</span></div>
+<div><span>feature2 = extrudeBuilder1.CommitFeature()</span></div>
+<br/>
+<div><span>theSession.DeleteUndoMark(markId17, </span><span>Nothing</span><span>)</span></div>
+<br/>
+<div><span>theSession.SetUndoMarkName(markId13, </span><span>"拉伸"</span><span>)</span></div>
+<br/>
+<div><span>Dim</span><span> expression25 </span><span>As</span><span> NXOpen.Expression = extrudeBuilder1.Limits.StartExtend.Value</span></div>
+<br/>
+<div><span>Dim</span><span> expression26 </span><span>As</span><span> NXOpen.Expression = extrudeBuilder1.Limits.EndExtend.Value</span></div>
+<br/>
+<div><span>extrudeBuilder1.Destroy()</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression23)</span></div>
+<br/>
+<div><span>workPart.Expressions.Delete(expression24)</span></div>
+<br/>
+<div><span>Dim</span><span> rotMatrix3 </span><span>As</span><span> NXOpen.Matrix3x3 = </span><span>Nothing</span></div>
+<div><span>rotMatrix3.Xx = </span><span>0.32369084031626738</span></div>
+<div><span>rotMatrix3.Xy = -</span><span>0.25406807483326743</span></div>
+<div><span>rotMatrix3.Xz = </span><span>0.91141299817693289</span></div>
+<div><span>rotMatrix3.Yx = -</span><span>0.89063788198691607</span></div>
+<div><span>rotMatrix3.Yy = </span><span>0.24331311598439376</span></div>
+<div><span>rotMatrix3.Yz = </span><span>0.3841391554629961</span></div>
+<div><span>rotMatrix3.Zx = -</span><span>0.31935623223166798</span></div>
+<div><span>rotMatrix3.Zy = -</span><span>0.93608126834184724</span></div>
+<div><span>rotMatrix3.Zz = -</span><span>0.14752442507703645</span></div>
+<div><span>Dim</span><span> translation3 </span><span>As</span><span> NXOpen.Point3d = </span><span>New</span><span> NXOpen.Point3d(-</span><span>5.8022847871323835</span><span>, </span><span>1.1427575033863984</span><span>, -</span><span>1.5673830378038165</span><span>)</span></div>
+<div><span>workPart.ModelingViews.WorkView.SetRotationTranslationScale(rotMatrix3, translation3, </span><span>20.087236954786007</span><span>)</span></div>
+<br/>
+<div><span>' ----------------------------------------------</span></div>
+<div><span>' 功能表：工具(T)-&gt;動作記錄(J)-&gt;停止錄製(S)</span></div>
+<div><span>' ----------------------------------------------</span></div>
+<br/>
+<div><span>End Sub</span></div>
+<div><span>End Module</span></div>
+</div>
 <p><span></span></p>
 <p><br/><br/></p>
 <h1 class="post-title">鋼球平衡台 PID 控制</h1>
