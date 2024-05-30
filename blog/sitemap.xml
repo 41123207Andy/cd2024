@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>./</loc>
-<lastmod>2024-05-30T08:39:45-00:00</lastmod>
+<lastmod>2024-05-30T08:52:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./archives.html</loc>
-<lastmod>2024-05-30T08:39:45-00:00</lastmod>
+<lastmod>2024-05-30T08:52:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./tags.html</loc>
-<lastmod>2024-05-30T08:39:45-00:00</lastmod>
+<lastmod>2024-05-30T08:52:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./categories.html</loc>
-<lastmod>2024-05-30T08:39:45-00:00</lastmod>
+<lastmod>2024-05-30T08:52:01-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>./2024-Spring-w13-15-blog-tutorial.html</loc>
-<lastmod>2024-05-30T08:37:55+08:00</lastmod>
+<lastmod>2024-05-30T08:51:42+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
